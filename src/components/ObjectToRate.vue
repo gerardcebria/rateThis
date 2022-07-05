@@ -2,68 +2,70 @@
   <v-card
     :loading="loading"
     class="mx-auto my-12"
-    max-width="374"
+    max-width="450"
   >
-    <template >
-      <v-progress-linear
-        color="deep-purple"
-        height="10"
-        indeterminate
-      ></v-progress-linear>
-    </template>
 
     <v-img
-      height="250"
-      src="https://cdn.vuetifyjs.com/images/cards/cooking.png"
+      class = 'mt-3 mx-3'
+      height="auto"
+      src="../assets/seagull.jpeg"
     ></v-img>
 
-    <v-card-title>Cafe Badilico</v-card-title>
+    <v-card-title
+      align="center"
+    >Seagull</v-card-title>
 
-    <v-card-text>
-      <v-row
-        align="center"
-        class="mx-0"
-      >
-        <v-rating
-          :value="4.5"
-          color="amber"
-          dense
-          half-increments
-          readonly
-          size="14"
-        ></v-rating>
+    <v-card-text align='center'>
+        <!-- <v-rating
+                v-model="rating"
+                length="10"
+                color="amber"
+                hover
+                half-increments
+                size="64"
+        ></v-rating> -->
+        <v-rating v-model="rating"             
+            half-increments
+            length="10"
+        >
+        <template v-slot:item="props">
+            <v-icon
+            :color="props.isFilled ? 'orange' : 'grey lighten-1'"
+            size='40'
+            @click="props.click"
+            >
+            {{props.isFilled ? 'mdi-star-circle' : 'mdi-star-circle-outline' }}
+            </v-icon>
+        </template>
+        </v-rating>
 
-        <div class="grey--text ms-4">
-          4.5 (413)
-        </div>
-      </v-row>
-
-      <div class="my-4 text-subtitle-1">
-        $ • Italian, Cafe
+      <div
+        class="my-4  align-center
+        text-subtitle-1">
+        {{rating}}
       </div>
 
-      <div>Small plates, salads & sandwiches - an intimate setting with 12 indoor seats plus patio seating.</div>
     </v-card-text>
 
     <v-divider class="mx-4"></v-divider>
 
-    <v-card-title>Tonight's availability</v-card-title>
+    <v-card-title>Share Hate/Love</v-card-title>
 
     <v-card-text>
-      <v-chip-group
-        v-model="selection"
-        active-class="deep-purple accent-4 white--text"
-        column
-      >
-        <v-chip>5:30PM</v-chip>
-
-        <v-chip>7:30PM</v-chip>
-
-        <v-chip>8:00PM</v-chip>
-
-        <v-chip>9:00PM</v-chip>
-      </v-chip-group>
+        <twitter-button
+            url="https://github.com/"
+            description="GitHub is where people build software."
+        />
+        <whats-app-button
+            url="https://github.com/"
+            description="GitHub is where people build software."
+        />
+        <telegram-button
+            url="https://github.com/"
+            description="GitHub is where people build software."
+        />
     </v-card-text>
+ <!--
 
     <v-card-actions>
       <v-btn
@@ -74,17 +76,34 @@
         Reserve
       </v-btn>
     </v-card-actions>
+-->
   </v-card>
 </template>
 
 <script>
-  export default {
+import TwitterButton from "./TwitterButton";
+import TelegramButton from "./TelegramButton";
+import WhatsAppButton from "./WhatsAppButton";
+
+export default {
+
+    components: {
+        TwitterButton,
+        TelegramButton,
+        WhatsAppButton
+    },
+
     data: () => ({
+      colors: 'orange',
       loading: false,
       selection: 1,
+      rating:2
     }),
 
     methods: {
+      genColor (i) {
+        return this.colors[i]
+      },
       reserve () {
         this.loading = true
 
