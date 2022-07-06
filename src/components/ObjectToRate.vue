@@ -13,37 +13,40 @@
 
     <v-card-title
       align="center"
+      class="text-h3 my-6 py-3"
+
     >Seagull</v-card-title>
 
     <v-card-text align='center'>
-        <!-- <v-rating
-                v-model="rating"
-                length="10"
-                color="amber"
-                hover
-                half-increments
-                size="64"
-        ></v-rating> -->
         <v-rating v-model="rating"             
             half-increments
             length="10"
         >
         <template v-slot:item="props">
             <v-icon
-            :color="props.isFilled ? 'orange' : 'grey lighten-1'"
+            :color="props.isFilled ? 'amber lighten-1' : 'grey lighten-1'"
             size='40'
             @click="props.click"
             >
-            {{props.isFilled ? 'mdi-star-circle' : 'mdi-star-circle-outline' }}
-            </v-icon>
+            {{'mdi-star-circle'}}
+        </v-icon>
         </template>
         </v-rating>
-
-      <div
-        class="my-4  align-center
-        text-subtitle-1">
-        {{rating}}
-      </div>
+      <v-row>
+        <v-col
+          class="my-4 
+          align-left
+          font-weight-bold
+          text-subtitle-1">
+          Current Rating: {{rating}}
+        </v-col>
+        <v-col
+          class="my-4  align-right
+          font-weight-bold
+          text-subtitle-1">
+          Votes: {{rating}}
+        </v-col>
+      </v-row>
 
     </v-card-text>
 

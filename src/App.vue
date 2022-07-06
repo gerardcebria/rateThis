@@ -4,6 +4,7 @@
           <v-app-bar 
           rounded 
           elevation="4"
+          color="amber lighten-1"
           >
             <v-app-bar-nav-icon></v-app-bar-nav-icon>
             <v-spacer></v-spacer>
